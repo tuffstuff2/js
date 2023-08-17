@@ -1,226 +1,486 @@
+let types = {
+  number: [],
+  string: [],
+  boolean: [],
+  object: [],
+};
 
- let hotel = [
+const obj1 = {
+  name: "John",
+  age: 30,
+  isAdmin: false,
+  hobbies: ["reading", "swimming"],
+};
 
-      // 1 этаж //
+const obj2 = {
+  address: "123 Main St",
+  phone: "555-555-5555",
+  isAdmin: true,
+  job: {
+    title: "Developer",
+    company: "ABC Corp",
+  },
+};
 
-      [
-      {
-      room: 1,
-      price: 300,
-      brand: "Luxe",
-      children: false,
-      },
-      {
-      room: 2,
-      price: 4000,
-      brand: "Deluxe",
-     children: true,
-      },
-      {
-      room: 3,
-      price: 1000,
-      brand: "Deluxe",
-      children: false,
-      },
-      {
-     room: 4,
-      price: 900,
-     brand: "Luxe",
-      children: true,
-      },
-      ],
+// 1. Соеденить два объекта в одно целое но не изменяя исходные данные
+let obj = { ...obj1, ...obj2 };
 
-      // 2 этаж //
+// 2. Из этого объекта вытащить все клюи в отдельную переменную (ключи)
+let keys = Object.keys(obj);
 
-      [
-      {
-      room: 5,
-      price: 700,
-      brand: "Luxe",
-      children: true,
-     },
-      {
-     room: 6,
-      price: 79000,
-      brand: "President",
-      children: true,
-      },
-     {
-      room: 7,
-      price: 600,
-      brand: "Luxe",
-      children: false,
-     },
-      {
-      room: 8,
-      price: 950,
-      brand: "Luxe",
-      children: true,
-      },
-      ],
+// 3. Из этого объекта вытащить все значени в отдельную переменную (значения)
+let values = Object.values(obj);
 
-       // 3 этаж //
+// 4. Эти два полученных массива вы должны соеденить
+let arr = keys.concat(values);
 
-      [
-      {
-      room: 9,
-      price: 1900,
-      brand: "Deluxe",
-      children: false,
-      },
-     {
-      room: 10,
-      price: 5000,
-     brand: "Deluxe",
-      children: true,
-      },
-      {
-      room: 11,
-      price: 1000,
-      brand: "Deluxe",
-      children: false,
-      },
-     {
-      room: 12,
-      price: 250,
-      brand: "Luxe",
-      children: false,
-      },
-      ],
+arr.forEach((item) => {
+  let type = typeof item;
+  if (type === "number") {
+    types.number.push(item);
+  } else if (type === "string") {
+    types.string.push(item);
+  } else if (type === "boolean") {
+    types.boolean.push(item);
+  } else if (type === "object") {
+    if (Array.isArray(item)) {
+      types.object = types.object.concat(item);
+    } else {
+      types.object.push(item);
+    }
+  }
+});
 
-       // 4 этаж //
+console.log(types);
 
-      [
-      {
-      room: 13,
-      price: 10000,
-      brand: "President",
-      children: true,
-      },
-      {
-      room: 14,
-      price: 8000,
-      brand: "President",
-      children: false,
-      },
-      ],
-     ];
-    
-     let rooms = {
-      all_roms: [],
-     rooms: 0,
-     };
-     let brands = {
-      president: [],
-      deluxe: [],
-      luxe: [],
-     };
-    
-     let room_level = {
-      perviy: 0,
-      vtoroy: 0,
-      tretiy: 0,
-      chetvertiy: 0,
-     };
-   
- let fun = function(){
-     let child_room = []
+// let popArtists = [
+//   "usmonova",
+//   "morgenshtern",
+//   "baskov",
+//   "eldzhey",
+//   "50cent",
+//   "eminem",
+//   "oxy",
+// ];
+// let long = popArtists[0];
+// popArtists.forEach((nam) => {
+//   if (nam.length < long.length) {
+//     long = nam;
+//   }
+// });
+// console.log(long);
 
-     // 1 задание //
- for(let item of hotel){
-    for(let i of item){
-     let branding = i.brand
-     if(branding == "President"){
-         brands.president.push(branding)
-     }else if(branding == "Deluxe"){
-     brands.deluxe.push(branding)
- }else if(branding == "Luxe"){
-     brands.luxe.push(branding)
- }else{
-     break
- }
- }
+// let cars = [
+//   {
+//     name: "malibu",
+//     price: 31000,
+//   },
+//   {
+//     name: "nexia",
+//     price: 12000,
+//   },
+//   {
+//     name: "onix",
+//     price: 21000,
+//   },
+//   {
+//     name: "tahoe",
+//     price: 100000,
+//   },
+//   {
+//     name: "cobalt",
+//     price: 13000,
+//   },
+//   {
+//     name: "tracker",
+//     price: 26000,
+//   },
+//   {
+//     name: "kia k5",
+//     price: 43000,
+//   },
+//   {
+//     name: "santafe",
+//     price: 50000,
+//   },
+//   {
+//     name: "elantra",
+//     price: 35000,
+//   },
+//   {
+//     name: "tico",
+//     price: 2500,
+//   },
+// ];
 
- // 2 задание //
- for(let eat of item){
-     eat.eating = true
- }
-    
+// let max = 0
+// cars.forEach((cel)=> {
+//   if(cel.price > max){
+//     max = cel.price
+//   }
+// })
+// console.log(max);
 
- // 3 задание //
- for(let rum of item){
-     rooms.all_roms.push(rum.room)
-     rooms.all_roms.sort((a, b)=> a - b)
-     rooms.rooms++
- }
-    
- // 7 задание //
+// let ever = 0
+// cars.forEach((cel)=> {
+//   ever += cel.price
+// })
+// ever /= cars.length
+// console.log(ever);
 
-     for(let chl of item){
-         if(chl.children == true){
-             child_room.push(chl)
-         }else{
-            
-         }
-     }
-    
- }
+// //  +prompt("Введите число мин ${arr.map((arr) => arr.n)")}\n //
+// let from = +prompt("Введите число мин"); // 10000
+// let up = +prompt("Введите число мак"); // 40000
 
+// let arr = cars.filter((car) => car.price >= from && car.price <= up);
 
+// if (arr.length === 0) {
+//   alert("Нет машины с такой ценой.");
+// } else if (arr.length === 1) {
+//   let Car = arr[0];
+//   let inf = confirm(
+//     `Вы выбрали ${Car.name} за ${Car.price}. Хотите купить? Да/Нет`
+//   );
+//   if (inf === true) {
+//     let payment = prompt(`Введите сумму для оплаты ${Car.price}:`);
+//     if (payment == Car.price) {
+//       alert(`Спасибо за покупку ${Car.name}!`);
+//     } else {
+//       alert("Не достаточно денег");
+//     }
+//   } else {
+//     alert("Приходите еще");
+//   }
+// } else {
+//   alert("Выберите машину из списка:");
+//   arr.forEach((car, index) => {
+//     alert(`${index + 1}. ${car.name} за ${car.price}`);
+//   });
+//   let choice = prompt("Введите номер машины:");
+//   if (choice >= 1 && choice <= arr.length) {
+//     let Car = arr[choice - 1];
+//     let inf = confirm(
+//       `Вы выбрали ${Car.name} за ${Car.price}. Хотите купить? Да/Нет`
+//     );
+//     if (inf === true) {
+//       let payment = prompt(`Введите сумму для оплаты ${Car.price}:`);
+//       if (payment == Car.price) {
+//         alert(`Спасибо за покупку ${Car.name}!`);
+//       } else {
+//         alert("Оплата не принята.");
+//       }
+//     } else {
+//       alert("Приходите еще");
+//     }
+//   } else {
+//     alert("Приходите еще.");
+//   }
+// }
 
+// какую вы из этих машин купите ?
 
- // 4 задание //
- let max_price = hotel.flat().sort((a, b) => a.price - b.price );
- let ma_price = max_price.pop()
+// если выбирает конкретную машину то следующий промпт с просьбой оплатить стоимость этой машины
 
-    
- // 5 задание //
+// let arr = [
+//   "ruxshona",
+//   "jojo",
+//   "ulmas",
+//   "shoxrux",
+//   "javohir",
+//   "samir",
+//   "damir",
+//   "jasmina",
+// ].find((name) => name.length % 2 === 0);
+// console.log(arr);
 
- for (let item = 0; item < hotel.length; item++) {
-      let floor_price = 0;
-     for (let i = 0; i < hotel[item].length; i++) {
-      floor_price += hotel[item][i].price;
-      }
-      if (item === 0) {
-      room_level.perviy = floor_price;
-      } else if (item === 1) {
-     room_level.vtoroy = floor_price;
-      } else if (item === 2) {
-      room_level.tretiy = floor_price;
-      } else if (item === 3) {
-     room_level.chetvertiy = floor_price;
-      }else{
-         break
-     }
-     }
+//  let nam = prompt('Ваше имя')
 
-     // 6 задание //
-  let all_price = hotel.flat().reduce((a, b) => a + b.price, 0)
- 
+//  if(nam.length % 2 == 0){
+//      alert('проходите')
+//  }else{
+//      alert('нет')
+//  }
 
- console.log(room_level);
- console.log(brands);
- console.log(rooms);
- console.log(child_room);
- console.log(all_price);
- console.log(ma_price);
- }
- console.log(fun())
+//  let num = +prompt('Четность числа')
 
+//  if( num % 2 == 0){
+//      alert('четно')
+//  }else{
+//      alert('нет')
+//  }
 
-     
+//  let chislo = +prompt('числа')
+//  let znak = prompt('+/-/*/ : через знак /')
+//  let chislo1 = +prompt('числа')
 
+//  if(znak == '+'){
+//      alert(chislo + chislo1)
+//  }else if(znak == '-'){
+//      alert(chislo - chislo1)
+//  }else if(znak == '*'){
+//      alert(chislo * chislo1)
+//  }else if(znak == '/'){
+//      alert(chislo / chislo1)
+//  }else {
+//      alert('нет')
+//  }
 
+// let month = +prompt('сезон')
+// if(month >= 3 && month <= 6){
+//     alert('Весна')
+// }else if(month >= 6 && month <= 9){
+//     alert('Лето')
+// }else if(month >= 9 && month <= 11){
+//     alert('Осень')
+// }else if(month >= 2){
+//     alert('Зима')
+// }else if(month == 12){
+//     alert('Зима')
+// }else {
+//     alert('Нет')
+// }
 
+//  let myv = 123
+//  console.log(myv instanceof String);
+//  console.log(typeof myv);
+//  let myv2 = myv
+// console.log(myv2);
 
+// let m = Math.random()
+// m = String(m).slice(2)
+// m = Number(m)
+// console.log(m);
 
+// // let nam = prompt('Введите имя')
+// // let n = nam.slice(0,1).toUpperCase()  + nam.slice(1).toLowerCase()
+// // console.log(n);
 
+// let ran = Math.ceil(Math.random() * 899) + 100
+// console.log(ran);
 
+// let hell = "hELLOwORLD"
+//   let h = hell.slice(0, 1).toUpperCase() + hell.slice(1, 5).toLowerCase()
+//   let w = hell.slice(5, 6).toUpperCase() + hell.slice(6).toLowerCase()
+//    w = w.slice(0, 1).toUpperCase() + w.slice(1).toLowerCase()
+//    hell = `${h} ${w}`
+//    console.log(hell)
 
+//  let a = prompt('Введите дробное число через .')
+//  let b = prompt('Введите на какую степень хотите возвести')
+//  let c = a ** b
+//  let str = c.toString()
+//  console.log(c);
+//  console.log(str);
+//  alert(Math.ceil(c));
 
+// let a = +prompt('Введите дробное число через .')
+// let b = +prompt('Введите натуральное число')
+// let c = +prompt('На какю степень хотите воздвигнуть')
+// let result = (a + b) **c
 
+// alert(Math.ceil(result),);
 
+//  let hotel = [
 
+//       // 1 этаж //
+
+//       [
+//       {
+//       room: 1,
+//       price: 300,
+//       brand: "Luxe",
+//       children: false,
+//       },
+//       {
+//       room: 2,
+//       price: 4000,
+//       brand: "Deluxe",
+//      children: true,
+//       },
+//       {
+//       room: 3,
+//       price: 1000,
+//       brand: "Deluxe",
+//       children: false,
+//       },
+//       {
+//      room: 4,
+//       price: 900,
+//      brand: "Luxe",
+//       children: true,
+//       },
+//       ],
+
+//       // 2 этаж //
+
+//       [
+//       {
+//       room: 5,
+//       price: 700,
+//       brand: "Luxe",
+//       children: true,
+//      },
+//       {
+//      room: 6,
+//       price: 79000,
+//       brand: "President",
+//       children: true,
+//       },
+//      {
+//       room: 7,
+//       price: 600,
+//       brand: "Luxe",
+//       children: false,
+//      },
+//       {
+//       room: 8,
+//       price: 950,
+//       brand: "Luxe",
+//       children: true,
+//       },
+//       ],
+
+//        // 3 этаж //
+
+//       [
+//       {
+//       room: 9,
+//       price: 1900,
+//       brand: "Deluxe",
+//       children: false,
+//       },
+//      {
+//       room: 10,
+//       price: 5000,
+//      brand: "Deluxe",
+//       children: true,
+//       },
+//       {
+//       room: 11,
+//       price: 1000,
+//       brand: "Deluxe",
+//       children: false,
+//       },
+//      {
+//       room: 12,
+//       price: 250,
+//       brand: "Luxe",
+//       children: false,
+//       },
+//       ],
+
+//        // 4 этаж //
+
+//       [
+//       {
+//       room: 13,
+//       price: 10000,
+//       brand: "President",
+//       children: true,
+//       },
+//       {
+//       room: 14,
+//       price: 8000,
+//       brand: "President",
+//       children: false,
+//       },
+//       ],
+//      ];
+
+//      let rooms = {
+//       all_roms: [],
+//      rooms: 0,
+//      };
+//      let brands = {
+//       president: [],
+//       deluxe: [],
+//       luxe: [],
+//      };
+
+//      let room_level = {
+//       perviy: 0,
+//       vtoroy: 0,
+//       tretiy: 0,
+//       chetvertiy: 0,
+//      };
+
+//  let fun = function(){
+//      let child_room = []
+
+//      // 1 задание //
+//  for(let item of hotel){
+//     for(let i of item){
+//      let branding = i.brand
+//      if(branding == "President"){
+//          brands.president.push(branding)
+//      }else if(branding == "Deluxe"){
+//      brands.deluxe.push(branding)
+//  }else if(branding == "Luxe"){
+//      brands.luxe.push(branding)
+//  }else{
+//      break
+//  }
+//  }
+
+//  // 2 задание //
+//  for(let eat of item){
+//      eat.eating = true
+//  }
+
+//  // 3 задание //
+//  for(let rum of item){
+//      rooms.all_roms.push(rum.room)
+//      rooms.all_roms.sort((a, b)=> a - b)
+//      rooms.rooms++
+//  }
+
+//  // 7 задание //
+
+//      for(let chl of item){
+//          if(chl.children == true){
+//              child_room.push(chl)
+//          }else{
+
+//          }
+//      }
+
+//  }
+
+//  // 4 задание //
+//  let max_price = hotel.flat().sort((a, b) => a.price - b.price );
+//  let ma_price = max_price.pop()
+
+//  // 5 задание //
+
+//  for (let item = 0; item < hotel.length; item++) {
+//       let floor_price = 0;
+//      for (let i = 0; i < hotel[item].length; i++) {
+//       floor_price += hotel[item][i].price;
+//       }
+//       if (item === 0) {
+//       room_level.perviy = floor_price;
+//       } else if (item === 1) {
+//      room_level.vtoroy = floor_price;
+//       } else if (item === 2) {
+//       room_level.tretiy = floor_price;
+//       } else if (item === 3) {
+//      room_level.chetvertiy = floor_price;
+//       }else{
+//          break
+//      }
+//      }
+
+//      // 6 задание //
+//   let all_price = hotel.flat().reduce((a, b) => a + b.price, 0)
+
+//  console.log(room_level);
+//  console.log(brands);
+//  console.log(rooms);
+//  console.log(child_room);
+//  console.log(all_price);
+//  console.log(ma_price);
+//  }
+//  console.log(fun())
 
 // Задача 1 //
 //  let c = 'first'
@@ -236,12 +496,8 @@
 //     console.log(e)
 //    }
 //    reverse1()
- 
 
-
-
-
-//  // Задача 2 // 
+//  // Задача 2 //
 //  function max_name(name1,name2,name3) {
 //     let longest_name = '';
 
@@ -253,14 +509,9 @@
 //         longest_name = name3;
 //     }
 //     return longest_name // как это работает ? //
-//  }    
+//  }
 
 //  console.log( max_name('Alex', 'George', 'Michael'))
-
-
-
-
-
 
 // // Задача 3 //
 //  function email_machine() {
@@ -276,11 +527,7 @@
 //     }
 //  }
 
-//  email_machine() 
-
-
-
-
+//  email_machine()
 
 //  // Задача 4 //
 //  let fun = () => {
@@ -288,17 +535,10 @@
 //  }
 //  console.log(fun());
 
-
 //  let fun1 = () => {
-//     console.log('Привет мир'); 
+//     console.log('Привет мир');
 //  }
 //  fun1()
-
-
-
- 
-    
-   
 
 // // Задача 5 //
 
@@ -318,11 +558,6 @@
 //         console.log('Сообщение 5')
 //     }, 10000)
 
-
-
-
-
-
 // // Задача 6 //
 // function weatherForecast(city, weather) {
 // if(weather == '' || weather == undefined){
@@ -333,10 +568,6 @@
 // }
 // weatherForecast('Dubai', 'Солнечно')
 // weatherForecast('France')
-    
-
-
-
 
 // // Задача 7 //
 // function createGreeting() {
@@ -353,26 +584,18 @@
 //     changeGreeting,
 // };
 // }
-           
+
 // let greeting1 = createGreeting()
-        
+
 // console.log(greeting1.greet('Bob'))
-    
 
 // // Задача 8 //
-    
-// let week = ['Суббота', 'Панидельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Воскрксенье',]   
-    
+
+// let week = ['Суббота', 'Панидельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Воскрксенье',]
+
 // let today = new Date().getDay()
 
-    
 // console.log(`Сегодня ${week[today]}`)
-
-
-
-
-
-
 
 //   let lines = +prompt('Елка');
 //   let str = ""
@@ -380,7 +603,7 @@
 //   for (let item of Array(lines)){
 //       str += "*"
 //       console.log(str)
-    
+
 //   }
 
 //   let lines1 = +prompt('Елка-')
@@ -398,16 +621,11 @@
 //  }
 // }
 //   }
-  
-    
-      
-      
+
 //  let n_arr = [[1,2,3],4,5,[[6,7],10],8,9]
 //  n_arr = n_arr.flat(Infinity)
 //  n_arr.sort((a, b) => a- b)
 //  console.log(n_arr)
-
-
 
 // let arr1 = [[{a: {price: 20}}],[{a: {price: 35}}],[{a: {price: 44}}]]
 
@@ -420,16 +638,6 @@
 //     }
 // }
 // console.log(total1)
-        
-
-
-
-
-
-
-
-
-
 
 //  let discount = +prompt('Какая скидка?')
 
@@ -535,25 +743,6 @@
 
 //  console.log(average);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
 // 1 Задание //
 // let arr = [
 //     {
@@ -643,10 +832,6 @@
 // console.log(a);
 // console.log(b);
 
-
-
-
-
 // // 2 Задание //
 
 // let arr1 = [4, 16, 19, 22, 11, 144, 967, 19124]
@@ -665,9 +850,6 @@
 // console.log(even);
 // console.log(odd);
 
-
-
-
 // // 3 Задание //
 
 // let cheap = []
@@ -683,8 +865,6 @@
 
 // }]
 
-
-
 // for (let i2 = 0; i2 < cars.length; i2++) {
 //     if (cars[i2].price < 35000) {
 //         cheap.push(cars[i2])
@@ -693,12 +873,7 @@
 
 // console.log(cheap)
 
-
-
-
-
 // // 4 Задание //
-
 
 // let arr2 = ['Aleksey', 'Kartoshka', 'Margarita', 'Morgenshtern', 'Monica'];
 // let index = prompt('Введите индекс который хотите удалить ');
@@ -709,9 +884,6 @@
 //     alert('Не коректно')
 // }
 // console.log(arr2)
-
-
-
 
 // // 5 Задание //
 
@@ -730,10 +902,6 @@
 //     console.log('Не гуд');
 // }
 
-
-
-
-
 // // 6 Задание //
 
 // let scoole4 = ["Alex", "John", "Mary"];
@@ -741,12 +909,6 @@
 // scoole4.push("Marj", "Kayt", "Luci")
 
 // console.log(scoole4)
-
-
-
-
-
-
 
 // // 7 Задание //
 
@@ -776,11 +938,6 @@
 
 // console.log(cars1)
 
-
-
-
-
-
 // // 8 Задание //
 
 // let myCities = ["London", "New York", "Paris", "Moscow"];
@@ -790,43 +947,18 @@
 //     console.log(cityInfo);
 // }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // // 1 Задание //
 // let scoole1 = {
 //     name: ["Alex", "Bob", "Jin"]
 // }
 
-
 // let scoole2 = {
 //     name: ["Andrew", "Jams", "Alee"]
 // }
 
-
 // let scoole3 = {
 //     name: ["Frank", "Mag", "Lusi"]
 // }
-
 
 // let arr1 = scoole1.name
 // let arr2 = scoole2.name
@@ -834,11 +966,6 @@
 // arr1 = arr1.concat(arr2, arr3)
 
 // console.log(arr1)
-
-
-
-
-
 
 // // 2 Задание //
 // let people_name = ["Alex", "Bob", "Jin", "Andrew", "Jams", "Alee", "Frank", "Mag", "Lusi"]
@@ -854,12 +981,6 @@
 // } else {
 //     alert('Не коректно')
 // }
-
-
-
-
-
-
 
 // // 3 Задание //
 // let array = [1, 2, 3, 4, 5, 6]
@@ -887,16 +1008,11 @@
 // let spin = array.reverse()
 // console.log(spin)
 
-
-
-
-
-
 // let inf = confirm('Ходите зарегистрироваться')
 
 // if (inf == true) {
 //     let user_nmae = prompt('Введите имя')
-//     user_nmae = user_nmae.slice(0, 1).toUpperCase() +  user_nmae.slice(1).toLowerCase()
+//     user_nmae = user_nmae.slice(0).toLowerCase()
 //     console.log(user_nmae)
 //     let user_code = +prompt('Введите код')
 //     console.log(user_code)
@@ -938,18 +1054,6 @@
 // } else {
 //     alert('Не коректно')
 // }
-
-
-
-
-
-
-
-
-
-
-
-
 
 // let objact = {
 //     name: "Alex",
@@ -1034,10 +1138,6 @@
 //     alert('Не коректно')
 // }
 
-
-
-
-
 // let car = confirm('Хотите узнаить о машиннах')
 // switch (car) {
 //     case false:
@@ -1082,9 +1182,6 @@
 //         alert('Приходите еще');
 //         break;
 // }
-
-
-
 
 // let random = Math.floor(Math.random() * 3) + 1;
 // let use_num = prompt('Введите имя');
@@ -1136,27 +1233,6 @@
 //         break;
 // }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //  let name = "Alex"
 //  let money = 10000
 //  let account = 7777
@@ -1184,7 +1260,6 @@
 //  } else {
 //      alert('Не коректно')
 //  }
-
 
 //  let car = confirm('Хотите узнаить о машиннах')
 
@@ -1216,8 +1291,6 @@
 //      alert('Приходите еще')
 //  }
 
-
-
 // let random = Math.floor(Math.random() * 3) + 1
 
 // let use_num = prompt('Введите имя')
@@ -1233,18 +1306,6 @@
 // } else {
 //     alert('нет')
 // }
-
-
-
-
-
-
-
-
-
-
-
-
 
 // !== не равно, || = или или, && = и то и то, else if = ? ;//
 
@@ -1310,11 +1371,6 @@
 //     alert('Что ты ввел')
 // }
 
-
-
-
-
-
 // // Задание 0 //
 
 // let hell = "HELLOWORLD"
@@ -1324,7 +1380,6 @@
 // w = w.slice(0, 1).toUpperCase() + w.slice(1).toLowerCase()
 // hell = `${h} ${w}`
 // console.log(hell)
-
 
 // // Задание 1 //
 
@@ -1364,16 +1419,6 @@
 // }else{
 //     console.log("bad")
 // }
-
-
-
-
-
-
-
-
-
-
 
 // Задача 1 //
 
@@ -1446,6 +1491,7 @@
 
 // let name = prompt("Ведите имя")
 // name = name.slice(0, 1)
+
 // if (name == "Р") {
 //     alert("Красавчик")
 // } else if (name == "О") {
@@ -1453,14 +1499,6 @@
 // } else {
 //     alert("Молодец")
 // }
-
-
-
-
-
-
-
-
 
 // // 1 Задача //
 // let my_country = "Uzbekistan"
@@ -1515,60 +1553,6 @@
 
 // console.log(total_balance);
 
-
-
 // // Random //
 // let casino = Math.floor(Math.random() * 8999) + 1000;
 // console.log(casino)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
