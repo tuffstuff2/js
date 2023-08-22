@@ -1,87 +1,127 @@
-let bank = [
-  {
-    name: "ruxshona beaty salon",
-    budget: 13000,
-    tax: 12,
-    expensesPerYear: [
-      {
-        title: "rent",
-        total: 6000,
-      },
-      {
-        title: "others",
-        total: 7000,
-      },
-      {
-        title: "ads",
-        total: 2000,
-      },
-    ],
-  },
-  {
-    name: "emin nosfrush",
-    budget: 5000,
-    tax: 0,
-    expensesPerYear: [
-      {
-        title: "rent",
-        total: 300,
-      },
-    ],
-  },
-  {
-    name: "akva mashennik",
-    budget: 80000,
-    tax: 15,
-    expensesPerYear: [
-      {
-        title: "rent",
-        total: 3008,
-      },
-    ],
-  },
-];
+function max_name(name1, name2, name3) {
+  let longest_name = "";
 
-let nalog = 0;
-let banktax;
-for (let item of bank) {
-  let calcnalog = (item.budget / 100) * item.tax;
-
-  if (calcnalog > nalog) {
-    nalog = calcnalog;
-    banktax = item;
-  }
-}
-
-console.log(banktax);
-
-for (let item of bank) {
-  let all = 0;
-  for (let i of item.expensesPerYear) {
-    all += i.total;
-  }
-  item.procent = `${all / (item.budget / 100)}%`;
-  console.log(item);
-}
-
-let lucky = [];
-let unlucky = [];
-
-for (let item of bank) {
-  let calcnalog = (item.budget / 100) * item.tax;
-  let all = 0;
-  for (let i of item.expensesPerYear) {
-    all += i.total;
-  }
-  if (item.budget - (calcnalog + all) > 0) {
-    lucky.push(item);
+  if (name1.length >= name2.length && name1.length >= name3.length) {
+    longest_name = name1;
+  } else if (name2.length >= name1.length && name2.length >= name3.length) {
+    longest_name = name2;
   } else {
-    unlucky.push(item);
+    longest_name = name3;
   }
+  return longest_name;
 }
+console.log(max_name("Alex", "George", "Michael"));
 
-console.log(lucky);
-console.log(unlucky);
+
+
+// пропорции //
+let procent = (a, b) => {
+  a = +prompt("Введите число");
+  b = +prompt("Число для пропорции");
+  if (a >= b) {
+    alert(`${(b * 100) / a}%`);
+  } else {
+    alert("Не коректно");
+  }
+};
+procent();
+
+
+
+
+// фибоначи //
+let n = +prompt("Введите число");
+let fib = [0, 1];
+for (let i = 2; i <= n; i++) {
+  fib[i] = fib[i - 1] + fib[i - 2];
+}
+alert(fib[n]);
+
+// let bank = [
+//   {
+//     name: "ruxshona beaty salon",
+//     budget: 13000,
+//     tax: 12,
+//     expensesPerYear: [
+//       {
+//         title: "rent",
+//         total: 6000,
+//       },
+//       {
+//         title: "others",
+//         total: 7000,
+//       },
+//       {
+//         title: "ads",
+//         total: 2000,
+//       },
+//     ],
+//   },
+//   {
+//     name: "emin nosfrush",
+//     budget: 5000,
+//     tax: 0,
+//     expensesPerYear: [
+//       {
+//         title: "rent",
+//         total: 300,
+//       },
+//     ],
+//   },
+//   {
+//     name: "akva mashennik",
+//     budget: 80000,
+//     tax: 15,
+//     expensesPerYear: [
+//       {
+//         title: "rent",
+//         total: 3008,
+//       },
+//     ],
+//   },
+// ];
+
+// let nalog = 0;
+// let banktax;
+// for (let item of bank) {
+//   let calcnalog = (item.budget / 100) * item.tax;
+
+//   if (calcnalog > nalog) {
+//     nalog = calcnalog;
+//     banktax = item;
+//   }
+// }
+
+// console.log(banktax);
+
+// for (let item of bank) {
+//   let all = 0;
+//   for (let i of item.expensesPerYear) {
+//     all += i.total;
+//   }
+//   item.procent = `${all / (item.budget / 100)}%`;
+//   console.log(item);
+// }
+
+// let lucky = [];
+// let unlucky = [];
+
+// for (let item of bank) {
+//   let calcnalog = (item.budget / 100) * item.tax;
+//   let all = 0;
+//   for (let i of item.expensesPerYear) {
+//     all += i.total;
+//   }
+//   if (item.budget - (calcnalog + all) > 0) {
+//     lucky.push(item);
+//   } else {
+//     unlucky.push(item);
+//   }
+// }
+
+// console.log(lucky);
+// console.log(unlucky);
+
 //  let password = 7777;
 //  let count = 3;
 //  let ale;
