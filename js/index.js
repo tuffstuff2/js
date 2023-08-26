@@ -47,6 +47,18 @@ function careateBugger() {
 let begg1 = careateBugger();
 begg1();
 
+// Пример рекурсии //
+
+function fib(a) {
+  if (a <= 1) {
+    return a;
+  } else {
+    return (a = fib(a - 1) + fib(a - 2));
+  }
+}
+
+console.log(fib(7));
+
 // function max_name(name1, name2, name3) {
 //   let longest_name = "";
 
