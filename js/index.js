@@ -1,41 +1,85 @@
-function max_name(name1, name2, name3) {
-  let longest_name = "";
-
-  if (name1.length >= name2.length && name1.length >= name3.length) {
-    longest_name = name1;
-  } else if (name2.length >= name1.length && name2.length >= name3.length) {
-    longest_name = name2;
-  } else {
-    longest_name = name3;
+function bubble_sort(arr) {
+  for (let item = 0; item < arr.length; item++) {
+    for (let i = 0; i < arr.length - 1 - item; i++) {
+      if (arr[i] > arr[i + 1]) {
+        let numb = arr[i];
+        arr[i] = arr[i + 1];
+        arr[i + 1] = numb;
+      }
+    }
   }
-  return longest_name;
+  return arr.flat();
 }
-console.log(max_name("Alex", "George", "Michael"));
 
+let mas = [22, 11, 3, 5, 66, 7, 33];
 
+console.log(bubble_sort(mas));
 
-// пропорции //
-let procent = (a, b) => {
-  a = +prompt("Введите число");
-  b = +prompt("Число для пропорции");
-  if (a >= b) {
-    alert(`${(b * 100) / a}%`);
-  } else {
-    alert("Не коректно");
-  }
-};
-procent();
+//Примеры на замыкание //
 
-
-
-
-// фибоначи //
-let n = +prompt("Введите число");
-let fib = [0, 1];
-for (let i = 2; i <= n; i++) {
-  fib[i] = fib[i - 1] + fib[i - 2];
+function creteStape() {
+  let count = 0;
+  return function () {
+    count++;
+    console.log(count);
+  };
 }
-alert(fib[n]);
+let step = creteStape();
+step();
+step();
+step();
+
+function random(min, max) {
+  let rand = min - 0.5 + Math.random() * (max - min + 1);
+  return Math.round(rand);
+}
+
+function careateBugger() {
+  let s = 0;
+  return function begger() {
+    s += random(0, 100);
+    console.log(s);
+    if (s >= 250) return;
+    begger();
+  };
+}
+
+let begg1 = careateBugger();
+begg1();
+
+// function max_name(name1, name2, name3) {
+//   let longest_name = "";
+
+//   if (name1.length >= name2.length && name1.length >= name3.length) {
+//     longest_name = name1;
+//   } else if (name2.length >= name1.length && name2.length >= name3.length) {
+//     longest_name = name2;
+//   } else {
+//     longest_name = name3;
+//   }
+//   return longest_name;
+// }
+// console.log(max_name("Alex", "George", "Michael"));
+
+// // пропорции //
+// let procent = (a, b) => {
+//   a = +prompt("Введите число");
+//   b = +prompt("Число для пропорции");
+//   if (a >= b) {
+//     alert(`${(b * 100) / a}%`);
+//   } else {
+//     alert("Не коректно");
+//   }
+// };
+// procent();
+
+// // фибоначи //
+// let n = +prompt("Введите число");
+// let fib = [0, 1];
+// for (let i = 2; i <= n; i++) {
+//   fib[i] = fib[i - 1] + fib[i - 2];
+// }
+// alert(fib[n]);
 
 // let bank = [
 //   {
